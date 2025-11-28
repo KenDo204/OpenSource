@@ -1,0 +1,34 @@
+name: Deploy to Somee
+
+on:
+  push:
+    branches:
+      - main   # Hoặc branch bạn muốn deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      # Nếu bạn dùng .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build project
+        run: dotnet publish -c Release -o publish
+
+      # Upload qua FTP lên Somee
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./publish
+          server-dir: /   # thư mục gốc hoặc thư mục bạn cần
