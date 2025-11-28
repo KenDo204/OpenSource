@@ -11,6 +11,9 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
-        server: ftp://KenJumpMan.somee.com/www.KenJumpMan.somee.com
+        server: KenJumpMan.somee.com
         username: NguyenJack04
         password: ${{ secrets.PW }}
+        protocol: ftps
+        server-dir: /www.KenJumpMan.somee.com/
+        local-dir: ./
