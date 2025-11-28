@@ -14,6 +14,6 @@ jobs:
         server: KenJumpMan.somee.com
         username: NguyenJack04
         password: ${{ secrets.PW }}
-        protocol: ftps
+        protocol: ftp
         server-dir: /www.KenJumpMan.somee.com/
         local-dir: ./
