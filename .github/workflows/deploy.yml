@@ -1,25 +1,19 @@
-name: Deploy static site
-
-on:
-  push:
-    branches:
-      - main
-
+on: push
+name: 🚀 Deploy website on push
 jobs:
-  deploy:
-    name: Upload to Somee hosting
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          password: ${{ secrets.PW }}
-          protocol: ftps
-          server-dir: /www.KenJumpMan.somee.com/
-          local-dir: ./
-
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      with:
+        server: KenJumpMan.somee.com
+        username: NguyenJack04
+        password: ${{ secrets.PW }}
+        protocol: ftp
+        server-dir: /www.KenJumpMan.somee.com/
+        local-dir: ./
