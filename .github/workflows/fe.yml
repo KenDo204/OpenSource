@@ -17,9 +17,9 @@ jobs:
       - name: FTP Deploy to Somee
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.SOMEE_FTP_SERVER }}
-          username: ${{ secrets.SOMEE_FTP_USERNAME }}
-          password: ${{ secrets.SOMEE_FTP_PASSWORD }}
+          server: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PW }}
           protocol: ftp
           server-dir: / # đổi nếu Somee yêu cầu thư mục cụ thể
           local-dir: .
