@@ -1,26 +1,25 @@
-name: Deploy to Somee
+name: Deploy static site
 
 on:
   push:
     branches:
-      - main   # đổi thành branch bạn đang dùng
+      - main
 
 jobs:
-  ftp-deploy:
-    name: Upload to Somee Hosting
+  deploy:
+    name: Upload to Somee hosting
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: FTP Deploy to Somee
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.PW }}
-          protocol: ftp
-          server-dir: / # đổi nếu Somee yêu cầu thư mục cụ thể
+          protocol: ftps
+          server-dir: /
           local-dir: .
-          timeout: 600
+
